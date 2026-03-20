@@ -15,6 +15,7 @@ DEFAULT_HIGHLEVEL_ACTION_SET_ARGS = {
     "miniwob_all": HighLevelActionSetArgs(
         subsets=["miniwob_all"],
         multiaction=False,
+        planner_mode=False,
         strict=False,
         retry_with_force=True,
         demo_mode="off",
@@ -22,6 +23,7 @@ DEFAULT_HIGHLEVEL_ACTION_SET_ARGS = {
     "miniwob_liu18": HighLevelActionSetArgs(
         subsets=["miniwob_liu18"],
         multiaction=False,
+        planner_mode=False,
         strict=False,
         retry_with_force=True,
         demo_mode="off",
@@ -29,6 +31,7 @@ DEFAULT_HIGHLEVEL_ACTION_SET_ARGS = {
     "miniwob_shi17": HighLevelActionSetArgs(
         subsets=["miniwob_shi17"],
         multiaction=False,
+        planner_mode=False,
         strict=False,
         retry_with_force=True,
         demo_mode="off",
@@ -36,6 +39,7 @@ DEFAULT_HIGHLEVEL_ACTION_SET_ARGS = {
     "miniwob_humphreys22": HighLevelActionSetArgs(
         subsets=["miniwob_humphreys22"],
         multiaction=False,
+        planner_mode=False,
         strict=False,
         retry_with_force=True,
         demo_mode="off",
@@ -43,6 +47,7 @@ DEFAULT_HIGHLEVEL_ACTION_SET_ARGS = {
     "workarena": HighLevelActionSetArgs(
         subsets=["workarena"],  # no need for infeasible action
         multiaction=False,
+        planner_mode=False,
         strict=False,
         retry_with_force=True,
         demo_mode="off",
@@ -50,14 +55,16 @@ DEFAULT_HIGHLEVEL_ACTION_SET_ARGS = {
     "workarena++": HighLevelActionSetArgs(
         subsets=["workarena++"],
         multiaction=False,
+        planner_mode=False,
         strict=False,
         retry_with_force=True,
         demo_mode="off",
     ),
     # from https://arxiv.org/abs/2307.13854
     "webarena": HighLevelActionSetArgs(
-        subsets=["webarena"],
-        multiaction=False,
+        subsets=["webarena", "executor"], # TODO should not be here
+        multiaction=True, # used to be False
+        planner_mode=False,
         strict=False,
         retry_with_force=True,
         demo_mode="off",
@@ -66,6 +73,7 @@ DEFAULT_HIGHLEVEL_ACTION_SET_ARGS = {
     "visualwebarena": HighLevelActionSetArgs(
         subsets=["visualwebarena"],
         multiaction=False,
+        planner_mode=False,
         strict=False,
         retry_with_force=True,
         demo_mode="off",
@@ -73,6 +81,7 @@ DEFAULT_HIGHLEVEL_ACTION_SET_ARGS = {
     "assistantbench": HighLevelActionSetArgs(
         subsets=["assistantbench"],
         multiaction=False,
+        planner_mode=False,
         strict=False,
         retry_with_force=True,
         demo_mode="off",
@@ -80,6 +89,23 @@ DEFAULT_HIGHLEVEL_ACTION_SET_ARGS = {
     "weblinx": HighLevelActionSetArgs(
         subsets=["weblinx"],
         multiaction=False,
+        planner_mode=False,
+        strict=False,
+        retry_with_force=True,
+        demo_mode="off",
+    ),
+    "plannerhighlevel": HighLevelActionSetArgs(
+        subsets=["highlevelweb", "highlevelwebshop"],
+        multiaction=True,
+        planner_mode=True,
+        strict=False,
+        retry_with_force=True,
+        demo_mode="off",
+    ),
+    "executorwebarena": HighLevelActionSetArgs(
+        subsets=["executor", "webarena"],
+        multiaction=True,
+        planner_mode=False,
         strict=False,
         retry_with_force=True,
         demo_mode="off",

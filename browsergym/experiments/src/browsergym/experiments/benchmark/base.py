@@ -32,6 +32,7 @@ class HighLevelActionSetArgs(DataClassJsonMixin):
     )
     # custom_actions: list[callable] | None  # non-serializable argument, not supported
     multiaction: bool = False
+    planner_mode: bool = False
     strict: bool = False
     retry_with_force: bool = False
     demo_mode: Optional[Literal["off", "default", "all_blue", "only_visible_elements"]] = None
@@ -44,6 +45,7 @@ class HighLevelActionSetArgs(DataClassJsonMixin):
     def make_action_set(self):
         return HighLevelActionSet(
             subsets=self.subsets,
+            planner_mode=self.planner_mode,
             custom_actions=None,
             multiaction=self.multiaction,
             strict=self.strict,

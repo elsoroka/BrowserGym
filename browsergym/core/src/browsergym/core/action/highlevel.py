@@ -39,10 +39,40 @@ from .functions import (  # check,; uncheck,
     tab_close,
     tab_focus,
     upload_file,
+    search_on_page,
+    open_page,
+    close_page,
+    navigate_to_page,
+    extract_information_from_page,
+    fill_text_field,
+    press_button,
+    select_option,
+    generic_action,
+    add_to_cart,
+    checkout,
+    report_result,
+    done,
 )
 from .parsers import action_docstring_parser, highlevel_action_parser
 
 ACTION_SUBSETS = {
+    "highlevelweb": [
+        search_on_page,
+        open_page,
+        close_page,
+        go_back,
+        go_forward,
+        navigate_to_page,
+        extract_information_from_page,
+        fill_text_field,
+        press_button,
+        select_option,
+        generic_action,
+    ],
+    "highlevelwebshop": [
+        add_to_cart,
+        checkout,
+    ],
     "chat": [send_msg_to_user],
     "infeas": [report_infeasible],
     "bid": [
@@ -246,6 +276,10 @@ ACTION_SUBSETS = {
         goto,  # GOTO, SEARCH
         send_msg_to_user,  # TERMINATE
     ],
+    "executor": [
+        report_result,
+        done,
+    ],
 }
 
 
@@ -278,6 +312,9 @@ class HighLevelActionSet(AbstractActionSet):
         "weblinx",
         "assistantbench",
         "custom",
+        "highlevelweb",
+        "highlevelwebshop",
+        "executor",
     ]
     DemoMode = typing.Literal["off", "default", "all_blue", "only_visible_elements"]
 
@@ -292,12 +329,14 @@ class HighLevelActionSet(AbstractActionSet):
         ],
         custom_actions: typing.Optional[list[callable]] = None,
         multiaction: bool = True,
+        planner_mode: bool = False,
         demo_mode: typing.Optional[DemoMode] = None,
         strict: bool = False,
         retry_with_force: bool = False,
     ):
         super().__init__(strict)
         self.multiaction = multiaction
+        self.planner_mode = planner_mode
         self.demo_mode = demo_mode
         self.retry_with_force = retry_with_force
 
@@ -451,11 +490,11 @@ One single action to be executed. You can only use one action at a time."""
 
 """
 
-        if self.multiaction:
+        if self.multiaction and not self.planner_mode:
             description += f"""\
 Multiple actions can be provided at once, but will be executed sequentially without any feedback from the page.
 More than 2-3 actions usually leads to failure or unexpected behavior."""
-        else:
+        elif not self.planner_mode:
             description += f"""\
 Only a single action can be provided at once."""
 

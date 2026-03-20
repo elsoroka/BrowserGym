@@ -12,11 +12,131 @@ from .utils import (
     smooth_move_visual_cursor_to,
 )
 
+
 page: playwright.sync_api.Page = None
 send_message_to_user: callable = None
 report_infeasible_instructions: callable = None
 demo_mode: Literal["off", "default", "all_blue", "only_visible_elements"] = None
 retry_with_force: bool = False
+
+
+## HIGH LEVEL ACTIONS FOR PLANNER
+def search_on_page(search_page_url:str, search_text:str)-> str or None:
+    """Open the search_page_url and search for the search_text. Return the best match page URL as a string, or None if not found.
+
+    Examples:
+        search_on_page("https://www.google.com", "Python")
+    """
+    return search_on_page(search_page_url, search_text)
+
+def open_page(url:str)->bool:
+    """Open the given URL in a new page. Return True if successful, False otherwise.
+    
+    Examples:
+        open_page("https://www.google.com")
+    """
+    try:
+        page.goto(url)
+        return True
+    except Exception as e:
+        return False
+
+def close_page()->bool:
+    """Close the current page. Return True if successful, False otherwise.
+
+    Examples:
+        close_page()
+    """
+    try:
+        page.close()
+        return True
+    except Exception as e:
+        return False
+
+def navigate_to_page(description:str)->bool:
+    """Navigate to a page that fits the given description. Return True if successful, False otherwise.
+
+    Examples:
+        navigate_to_page("The home page of this website.")
+    """
+    
+    return navigate_to_page(description)
+
+def extract_information_from_page(description:str)->str:
+    """Extract text from the current page that fits the given description. Return the text as a string.
+
+    Examples:
+        extract_information_from_page("The lowest price of the product.")
+    """
+    return extract_information_from_page(description)
+
+def add_to_cart(url:str, item_description: str)->bool:
+    """Add the product to the cart. Return True if successful, False otherwise.
+
+    Examples:
+        add_to_cart("product_url") # returns True because this is a product page
+    """
+    return add_to_cart(url, item_description)
+
+def checkout(payment_and_shipping_information: str)->bool:
+    """Checkout from the current page. Return True if successful, False otherwise.
+
+    Examples:
+        checkout("A string containing payment information and shipping address") # while on a web shopping site with at least one item in the cart, returns True
+    """
+    return checkout(payment_and_shipping_information)
+
+def fill_text_field(field_description:str, text:str)->bool:
+    """Fill the text field with the given text. Return True if successful, False otherwise.
+
+    Examples:
+        fill_text_field("The email field", "example@example.com")
+    """
+    return fill_text_field(field_description, text)
+
+def press_button(button_description:str)->bool:
+    """Press the button with the given description. Return True if successful, False otherwise.
+
+    Examples:
+        press_button("The submit button")
+    """
+    return press_button(button_description)
+
+def select_option(option_description:str)->bool:
+    """Select the option with the given description. Return True if successful, False otherwise.
+
+    Examples:
+        select_option("Ground shipping")
+    """
+    return select_option(option_description)
+
+def generic_action(description:str)->str:
+    """Call a helper to perform the described action if no other function is appropriate. Return the result as a string.
+
+    Examples:
+        generic_action("Scroll down to the bottom of the page.")
+        generic_action("Remove all items from the cart.")
+    """
+    return generic_action(description)
+
+
+### For Executor
+
+def report_result(result:str)->None:
+    """Report the result of the action as a string.
+
+    Examples:
+        report_result("The requested result")
+    """
+    return report_result(result)
+
+def done()->None:
+    """Report that the action is done.
+
+    Examples:
+        done()
+    """
+    return done()
 
 """IMPORTANT
 The following primitives are meant to be included in the browsergym action using
