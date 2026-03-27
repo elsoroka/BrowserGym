@@ -1,6 +1,6 @@
 # these are placeholders
 # all these symbols will be available in browsergym actions
-from typing import Literal
+from typing import Literal, Union
 
 import playwright.sync_api
 
@@ -43,7 +43,7 @@ def open_page(url:str)->bool:
 
 def close_page()->bool:
     """Close the current page. Return True if successful, False otherwise.
-
+    
     Examples:
         close_page()
     """
@@ -62,13 +62,14 @@ def navigate_to_page(description:str)->bool:
     
     return navigate_to_page(description)
 
-def extract_information_from_page(description:str)->str:
-    """Extract text from the current page that fits the given description. Return the text as a string.
+def extract_information_from_page(description:str, _type:str="str")->Union[int, float, str]:
+    """Extract text from the current page that fits the given description and matches the given type.
+    Guaranteed to return a value of the given type or None if the information cannot be found.
 
     Examples:
-        extract_information_from_page("The lowest price of the product.")
+        extract_information_from_page("The lowest price of the product.", "float")
     """
-    return extract_information_from_page(description)
+    return extract_information_from_page(description, _type)
 
 def add_to_cart(url:str, item_description: str)->bool:
     """Add the product to the cart. Return True if successful, False otherwise.
