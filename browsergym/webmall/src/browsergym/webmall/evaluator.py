@@ -80,7 +80,7 @@ class StringEvaluator(Evaluator):
                         break
             else:
                 wrong_solutions.append(normalized_to_original[norm_submitted_url])
-                logger.info(f"[StringEvaluator] Wrong submission: {normalized_to_original[norm_submitted_url]}")
+                logger.info(f"[StringEvaluator] Wrong submission: {normalized_to_original[norm_submitted_url]}, should have been {norm_cp}")
         return score, wrong_solutions
 
     def _fetch_final_text(self, page: Page) -> str:

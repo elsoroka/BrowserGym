@@ -1,6 +1,6 @@
 # these are placeholders
 # all these symbols will be available in browsergym actions
-from typing import Literal, Union
+from typing import Literal, Union, Optional
 
 import playwright.sync_api
 
@@ -21,13 +21,13 @@ retry_with_force: bool = False
 
 
 ## HIGH LEVEL ACTIONS FOR PLANNER
-def search_on_page(search_page_url:str, search_text:str)-> str or None:
-    """Open the search_page_url and search for the search_text. Return the best match page URL as a string, or None if not found.
+def search_on_page(search_page_url:str, search_text:str, selection_criteria)-> Optional[str]:
+    """Open the search_page_url and search for the search_text. Return the page URL that matches the selection criteria as a string, or None if not found.
 
     Examples:
-        search_on_page("https://www.google.com", "Python")
+        search_on_page("https://example.com", "Product name", "Cheapest above $50")
     """
-    return search_on_page(search_page_url, search_text)
+    return search_on_page(search_page_url, search_text, selection_criteria)
 
 def open_page(url:str)->bool:
     """Open the given URL in a new page. Return True if successful, False otherwise.
@@ -62,9 +62,9 @@ def navigate_to_page(description:str)->bool:
     
     return navigate_to_page(description)
 
-def extract_information_from_page(description:str, _type:str="str")->Union[int, float, str]:
+def extract_information_from_page(description:str, _type:str="str")->Optional[Union[int, float, str]]:
     """Extract text from the current page that fits the given description and matches the given type.
-    Guaranteed to return a value of the given type or None if the information cannot be found.
+    Returns a value of the given type or None if the information cannot be found.
 
     Examples:
         extract_information_from_page("The lowest price of the product.", "float")
