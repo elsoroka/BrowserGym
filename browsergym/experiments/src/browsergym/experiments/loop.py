@@ -30,6 +30,8 @@ from .agent import Agent
 from .utils import count_messages_token, count_tokens
 
 logger = logging.getLogger(__name__)
+# set log level debug
+logger.setLevel(logging.DEBUG)
 
 SEED_MAX = 2 ^ 32  # arbitrary max value (exclusive), seems large enough
 
