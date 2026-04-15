@@ -121,6 +121,15 @@ def generic_action(description:str)->str:
     return generic_action(description)
 
 
+### For NL planner baseline
+def go_to_next_step(notes_from_previous_step:str)->str:
+    """Move to the next step in the plan, saving text notes from the previous step.
+
+    Examples:
+        next_step("I found the product I was looking for.")
+    """
+    return next_step(notes_from_previous_step)
+
 ### For Executor
 
 def report_result(result:str)->None:

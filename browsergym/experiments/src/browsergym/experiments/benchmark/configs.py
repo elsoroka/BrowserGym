@@ -102,6 +102,14 @@ DEFAULT_HIGHLEVEL_ACTION_SET_ARGS = {
         retry_with_force=True,
         demo_mode="off",
     ),
+    "nlplannerhighlevel": HighLevelActionSetArgs(
+        subsets=["nlplanner", "webarena"],
+        multiaction=True,
+        planner_mode=True,
+        strict=False,
+        retry_with_force=True,
+        demo_mode="off",
+    ),
     "executorwebarena": HighLevelActionSetArgs(
         subsets=["executor", "webarena"],
         multiaction=True,

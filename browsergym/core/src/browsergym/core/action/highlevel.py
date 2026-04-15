@@ -52,6 +52,7 @@ from .functions import (  # check,; uncheck,
     checkout,
     report_result,
     done,
+    go_to_next_step,
 )
 from .parsers import action_docstring_parser, highlevel_action_parser
 
@@ -73,6 +74,7 @@ ACTION_SUBSETS = {
         add_to_cart,
         checkout,
     ],
+    "nlplanner": [go_to_next_step],
     "chat": [send_msg_to_user],
     "infeas": [report_infeasible],
     "bid": [
@@ -314,6 +316,7 @@ class HighLevelActionSet(AbstractActionSet):
         "custom",
         "highlevelweb",
         "highlevelwebshop",
+        "nlplanner",
         "executor",
     ]
     DemoMode = typing.Literal["off", "default", "all_blue", "only_visible_elements"]
