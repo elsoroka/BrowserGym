@@ -22,7 +22,7 @@ retry_with_force: bool = False
 
 ## HIGH LEVEL ACTIONS FOR PLANNER
 def search_on_page(search_page_url:str, search_text:str, selection_criteria)-> Optional[str]:
-    """Open the search_page_url and search for the search_text. Return the page URL that matches the selection criteria as a string, or None if not found.
+    """Open the search_page_url and search for the search_text. Return a list of page URLs that matche the selection criteria as a string, or None if not found.
 
     Examples:
         search_on_page("https://example.com", "Product name", "Cheapest above $50")
