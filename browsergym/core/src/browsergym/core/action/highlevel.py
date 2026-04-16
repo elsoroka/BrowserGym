@@ -180,9 +180,12 @@ ACTION_SUBSETS = {
         tab_close,  #         PAGE_CLOSE    | tab_close()      | close_tab
         #                     CHECK         |                  |
         select_option,  #     SELECT_OPTION |                  |
-        send_msg_to_user,  #  STOP          | stop(answer)     | stop [answer]
         report_infeasible,  ## explicit unachievable action, equivalent STOP "N/A"
     ],
+    "webarena_interactive": [
+        send_msg_to_user,  #  STOP          | stop(answer)     | stop [answer]
+    ],
+
     # from the visualwebarena paper
     # https://arxiv.org/abs/2401.13649
     # from the visualwebarena source code
@@ -308,6 +311,7 @@ class HighLevelActionSet(AbstractActionSet):
         "miniwob_liu18",
         "miniwob_humphreys22",
         "webarena",
+        "webarena_interactive",
         "visualwebarena",
         "workarena",
         "workarena++",

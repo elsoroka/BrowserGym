@@ -62,7 +62,7 @@ DEFAULT_HIGHLEVEL_ACTION_SET_ARGS = {
     ),
     # from https://arxiv.org/abs/2307.13854
     "webarena": HighLevelActionSetArgs(
-        subsets=["webarena", "executor"], # TODO should not be here
+        subsets=["webarena", "webarena_interactive"],
         multiaction=True, # used to be False
         planner_mode=False,
         strict=False,
