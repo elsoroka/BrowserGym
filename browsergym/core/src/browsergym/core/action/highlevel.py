@@ -61,8 +61,6 @@ ACTION_SUBSETS = {
         search_on_page,
         open_page,
         close_page,
-        go_back,
-        go_forward,
         navigate_to_page,
         extract_information_from_page,
         fill_text_field,
