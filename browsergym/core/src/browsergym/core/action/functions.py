@@ -53,13 +53,13 @@ def close_page()->bool:
     except Exception as e:
         return False
 
-def navigate_to_page(description:str)->bool:
-    """Navigate to a page that fits the given description. Return True if successful, False otherwise.
+def navigate_to_page(description:str)->Optional[bool]:
+    """Navigate to a page that fits the given description. Return True if successful, False otherwise, or None if the executor LLM reports the subtask infeasible.
 
     Examples:
         navigate_to_page("The home page of this website.")
     """
-    
+
     return navigate_to_page(description)
 
 def extract_information_from_page(description:str, _type:str="str")->Optional[Union[int, float, str]]:
@@ -71,48 +71,48 @@ def extract_information_from_page(description:str, _type:str="str")->Optional[Un
     """
     return extract_information_from_page(description, _type)
 
-def add_to_cart(url:str, item_description: str)->bool:
-    """Add the product to the cart. Return True if successful, False otherwise.
+def add_to_cart(url:str, item_description: str)->Optional[bool]:
+    """Add the product to the cart. Return True if successful, False otherwise, or None if the executor LLM reports the subtask infeasible.
 
     Examples:
         add_to_cart("product_url") # returns True because this is a product page
     """
     return add_to_cart(url, item_description)
 
-def checkout(payment_and_shipping_information: str)->bool:
-    """Checkout from the current page. Return True if successful, False otherwise.
+def checkout(payment_and_shipping_information: str)->Optional[bool]:
+    """Checkout from the current page. Return True if successful, False otherwise, or None if the executor LLM reports the subtask infeasible.
 
     Examples:
         checkout("A string containing payment information and shipping address") # while on a web shopping site with at least one item in the cart, returns True
     """
     return checkout(payment_and_shipping_information)
 
-def fill_text_field(field_description:str, text:str)->bool:
-    """Fill the text field with the given text. Return True if successful, False otherwise.
+def fill_text_field(field_description:str, text:str)->Optional[bool]:
+    """Fill the text field with the given text. Return True if successful, False otherwise, or None if the executor LLM cannot locate the field.
 
     Examples:
         fill_text_field("The email field", "example@example.com")
     """
     return fill_text_field(field_description, text)
 
-def press_button(button_description:str)->bool:
-    """Press the button with the given description. Return True if successful, False otherwise.
+def press_button(button_description:str)->Optional[bool]:
+    """Press the button with the given description. Return True if successful, False otherwise, or None if the executor LLM cannot locate the button.
 
     Examples:
         press_button("The submit button")
     """
     return press_button(button_description)
 
-def select_option(option_description:str)->bool:
-    """Select the option with the given description. Return True if successful, False otherwise.
+def select_option(option_description:str)->Optional[bool]:
+    """Select the option with the given description. Return True if successful, False otherwise, or None if the executor LLM cannot locate the option.
 
     Examples:
         select_option("Ground shipping")
     """
     return select_option(option_description)
 
-def generic_action(description:str)->str:
-    """Call a helper to perform the described action if no other function is appropriate. Return the result as a string.
+def generic_action(description:str)->Optional[str]:
+    """Call a helper to perform the described action if no other function is appropriate. Return the result as a string, or None if the executor LLM reports the subtask infeasible.
 
     Examples:
         generic_action("Scroll down to the bottom of the page.")
