@@ -21,11 +21,11 @@ retry_with_force: bool = False
 
 
 ## HIGH LEVEL ACTIONS FOR PLANNER
-def search_on_page(search_page_url:str, search_text:str, selection_criteria)-> Optional[str]:
-    """Open the search_page_url and search for the search_text. Return a list of page URLs that matche the selection criteria as a string, or None if not found.
+def search_on_page(search_page_url:str, search_text:str, selection_criteria:str) -> str:
+    """Search for search_text on the store at search_page_url. Returns a '###'-separated string of matching product page URLs, or '' if none found.
 
     Examples:
-        search_on_page("https://example.com", "Product name", "Cheapest above $50")
+        search_on_page("http://localhost:8081", "HDMI cable", "HDMI cable longer than 3 metres")
     """
     return search_on_page(search_page_url, search_text, selection_criteria)
 
