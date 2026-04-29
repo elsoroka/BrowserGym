@@ -69,6 +69,7 @@ class StringEvaluator(Evaluator):
         }
         unique_normalized_urls = set(normalized_to_original.keys())
 
+        norm_cp = None
         for norm_submitted_url in unique_normalized_urls:
             for norm_cp, cp in checkpoint_map.items():
                 if norm_cp == norm_submitted_url:

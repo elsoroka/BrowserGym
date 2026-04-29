@@ -62,14 +62,14 @@ def navigate_to_page(description:str)->Optional[bool]:
 
     return navigate_to_page(description)
 
-def extract_information_from_page(description:str, _type:str="str", url:str=None)->Optional[Union[int, float, str]]:
+def extract_information_from_page(description:str, url:str, _type:str="str")->Optional[Union[int, float, str]]:
     """Extract text from the page at url that fits the given description and matches the given type.
     Returns a value of the given type or None if the information cannot be found.
 
     Examples:
-        extract_information_from_page("The lowest price of the product.", "float", "http://localhost:8081/product/123")
+        extract_information_from_page("The lowest price of the product.", "http://localhost:8081/product/123", "float")
     """
-    return extract_information_from_page(description, _type, url)
+    return extract_information_from_page(description, url, _type)
 
 def add_to_cart(url:str, item_description: str)->Optional[bool]:
     """Add the product to the cart. Return True if successful, False otherwise, or None if the executor LLM reports the subtask infeasible.
